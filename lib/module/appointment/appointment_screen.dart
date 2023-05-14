@@ -1,8 +1,6 @@
-
-import 'package:doctor_app/layout/doctor_layout.dart';
 import 'package:doctor_app/module/appointment/calendar_screen.dart';
-import 'package:doctor_app/shared/components/components.dart';
 import 'package:flutter/material.dart';
+
 
 class AppointmentScreen extends StatefulWidget {
   @override
@@ -129,6 +127,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'uniqueTag1',
         onPressed: () {
           if (_formKey.currentState!.validate()) {
           Navigator.push(context, MaterialPageRoute(

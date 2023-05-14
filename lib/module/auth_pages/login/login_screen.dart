@@ -1,4 +1,6 @@
+import '../../../layout/doctor_layout.dart';
 import 'package:doctor_app/module/auth_pages/login/my_button.dart';
+import 'package:doctor_app/shared/network/local/cache_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/components/components.dart';
@@ -8,9 +10,7 @@ class LoginScreen extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void signUserIn(){
 
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +61,10 @@ class LoginScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: MyButton(
-                    onTap: signUserIn,
+                    onTap: (){
+                      CacheHelper.saveData(key: 'isLoggedIn', value: true);
+                      navigateAndFinish(context, DoctorLayout());
+                    },
                     text: "Sign In",
                   ),
                 ),

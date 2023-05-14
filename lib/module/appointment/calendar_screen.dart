@@ -117,25 +117,27 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Center(
                       child: Padding(
                         padding: EdgeInsets.only(top: 20),
                         child: Text(
                           formattedDate,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 30,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
-                    if(iteration == 0)
-                      Expanded(
+                    iteration == 0?
+                      SizedBox(
+                        height: 200,
                         child: Container(
-                          color: Colors.blue,
+                          color: Color(0xff30384c),
                         ),
-                      ),
+                      ):
                     Column(
                       children: List.generate(iteration, (index) {
                         return TimeSlotItem(

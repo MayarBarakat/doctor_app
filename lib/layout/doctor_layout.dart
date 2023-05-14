@@ -1,6 +1,4 @@
-import 'dart:io';
 
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:doctor_app/layout/cubit/doctor_cubit.dart';
 import 'package:doctor_app/layout/utils/rive_utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rive/rive.dart';
 
-import '../shared/components/constants.dart';
-import '../shared/components/size_config.dart';
 
 
 
@@ -34,7 +30,7 @@ class _DoctorLayoutState extends State<DoctorLayout> {
         return SafeArea(
           child: Scaffold(
             backgroundColor: Colors.grey[300],
-
+            extendBody: true,
             body: IndexedStack(
               index: cubit.currentIndex,
               children: cubit.bottomScreen,
@@ -130,7 +126,9 @@ class RiveAsset{
 }
 
 List<RiveAsset>bottomNavs = [
-  RiveAsset("assets/images/icons.riv", artBoard: "HOME", stateMachineName: "HOME_interactivity", title: "Home"),
   RiveAsset("assets/images/icons.riv", artBoard: "SEARCH", stateMachineName: "SEARCH_Interactivity", title: "Search"),
-  RiveAsset("assets/images/icons.riv", artBoard: "TIMER", stateMachineName: "TIMER_Interactivity", title: "Timer"),
+  RiveAsset("assets/images/icons.riv", artBoard: "BELL", stateMachineName: "BELL_Interactivity", title: "Bell"),
+  RiveAsset("assets/images/icons.riv", artBoard: "USER", stateMachineName: "USER_Interactivity", title: "User"),
+
+  RiveAsset("assets/images/icons.riv", artBoard: "SETTINGS", stateMachineName: "SETTINGS_Interactivity", title: "Settings"),
 ];

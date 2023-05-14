@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:doctor_app/layout/cubit/doctor_cubit.dart';
 import 'package:doctor_app/layout/doctor_layout.dart';
+import 'package:doctor_app/module/auth_pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,13 +13,16 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Bloc.observer = MyBlocObserver();
-  await DioHelper.init();
   await CacheHelper.init();
-  runApp(const MyApp());
+  await DioHelper.init();
+  bool isLoggedIn =await CacheHelper.getData(key: 'isLoggedIn') ?? false;
+  runApp( MyApp(isLoggedIn: isLoggedIn,));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isLoggedIn;
+
+  const MyApp({Key? key, required this.isLoggedIn});
 
   // This widget is the root of your application.
   @override
@@ -37,7 +41,7 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
 
-                home: DoctorLayout(),
+                home: isLoggedIn? DoctorLayout() : LoginScreen(),
               );
             }));
 
