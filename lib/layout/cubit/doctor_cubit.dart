@@ -20,14 +20,7 @@ class DoctorCubit extends Cubit<DoctorState> {
   List<Widget> bottomScreen = [
     AppointmentScreen(),
     AppointmentTrackStateScreen(),
-    MySurgeryScreen(surgeries: [
-      Surgery(name: "Test", patientName: "Rami Hamad", date: "2023/2/3", time: "12 PM"),
-      Surgery(name: "Test", patientName: "Rami Hamad", date: "2023/2/3", time: "12 PM"),
-      Surgery(name: "Test", patientName: "Rami Hamad", date: "2023/2/3", time: "12 PM"),
-      Surgery(name: "Test", patientName: "Rami Hamad", date: "2023/2/3", time: "12 PM"),
-      Surgery(name: "Test", patientName: "Rami Hamad", date: "2023/2/3", time: "12 PM"),
-      Surgery(name: "Test", patientName: "Rami Hamad", date: "2023/2/3", time: "12 PM"),
-    ]),
+    MySurgeryScreen(),
     SettingsScreen(),
   ];
 

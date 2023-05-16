@@ -1,15 +1,19 @@
+import 'package:doctor_app/shared/components/components.dart';
 import 'package:flutter/material.dart';
 
-class MySurgeryScreen extends StatelessWidget {
-  final List<Surgery> surgeries;
+import 'my_surgery_details_screen.dart';
 
-  const MySurgeryScreen({Key? key, required this.surgeries}) : super(key: key);
+class MySurgeryScreen extends StatelessWidget {
+
+  const MySurgeryScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("عملياتي"),
+        title: Text("عملياتي",style: TextStyle(
+          fontWeight: FontWeight.bold
+        ),),
         centerTitle: true,
         backgroundColor: Color(0xff30384c),
       ),
@@ -18,14 +22,12 @@ class MySurgeryScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: ListView.separated(
           physics: const BouncingScrollPhysics(),
-          itemCount: surgeries.length,
+          itemCount: 10,
           separatorBuilder: (context,index){
             return const SizedBox(height: 10,);
           },
           itemBuilder: (context, index) {
-            final surgery = surgeries[index];
             return Card(
-
               elevation: 4.0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
@@ -33,9 +35,8 @@ class MySurgeryScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.blueGrey[200],
-                    child: const Icon(Icons.local_hospital, color: Colors.white),
+                  leading: Image.asset(
+                    "assets/images/doctor_surgery.png"
                   ),
                   title: Text(
                     'Surgery Name',
@@ -81,7 +82,13 @@ class MySurgeryScreen extends StatelessWidget {
                     ],
                   ),
                   onTap: () {
-                    // do something when the tile is tapped
+                    navigateTo(context, SurgeryDetailsScreen(
+                      bookingDate: "2023/3/4",
+                      patientName: "John",
+                      surgeryDate: "2023/6/2",
+                      surgeryInfo: "done successfully",
+                      surgeryStatus: true,
+                    ));
                   },
                 ),
               ),

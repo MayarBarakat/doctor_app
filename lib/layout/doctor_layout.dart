@@ -30,7 +30,6 @@ class _DoctorLayoutState extends State<DoctorLayout> {
         return SafeArea(
           child: Scaffold(
             backgroundColor: Colors.grey[300],
-            extendBody: true,
             body: IndexedStack(
               index: cubit.currentIndex,
               children: cubit.bottomScreen,

@@ -1,3 +1,5 @@
+import 'package:doctor_app/module/help/help_screen.dart';
+
 import '../../../layout/doctor_layout.dart';
 import 'package:doctor_app/module/auth_pages/login/my_button.dart';
 import 'package:doctor_app/shared/network/local/cache_helper.dart';
@@ -107,12 +109,17 @@ class LoginScreen extends StatelessWidget {
                       onTap: (){
 
                       },
-                      child: const Text(
+                      child:  TextButton(
+                        child:Text(
                           "Register Now",
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
                         ),
+                        ),
+                        onPressed: (){
+                          navigateTo(context, HelpScreen());
+                        },
                       ),
                     ),
                   ],

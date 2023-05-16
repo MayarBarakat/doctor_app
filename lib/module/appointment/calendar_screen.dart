@@ -47,7 +47,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Calendar'),
+          title: const Text('تحديد التاريخ'),
+          centerTitle: true,
           backgroundColor: Color(0xff30384c),
         ),
         backgroundColor: Colors.grey[300],

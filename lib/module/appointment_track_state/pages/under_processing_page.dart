@@ -1,66 +1,77 @@
+import 'package:doctor_app/module/appointment_track_state/appointment_state_info.dart';
+import 'package:doctor_app/shared/components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+
 
 class UnderProcessingPage extends StatelessWidget {
-  double screenHeight = 0;
-  double screenWidth = 0;
+  List<Trip> trips = [
+    Trip(
+        title: 'Beach Paradise', price: '350', nights: '3', img: 'surgery.jpg'),
+    Trip(title: 'City Break', price: '400', nights: '5', img: 'surgery.jpg'),
+    Trip(title: 'Ski Adventure', price: '750', nights: '2', img: 'surgery.jpg'),
+    Trip(title: 'Space Blast', price: '600', nights: '4', img: 'surgery.jpg'),
+  ];
+
+  Widget _buildTile(Trip trip,context) {
+    return ListTile(
+      onTap: () {
+        navigateTo(context, AppointmentInfo(
+            text: "الحجز قيد المعالجة",
+            image: "under_processing.json",
+            json:true,
+          status: "Under Processing",
+          color: Colors.yellow[900]!,
+        )
+        );
+      },
+      contentPadding: const EdgeInsets.all(25),
+
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text('${trip.nights} nights',
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue[300])),
+          Text(trip.title,
+              style: TextStyle(fontSize: 20, color: Colors.grey[600])),
+        ],
+      ),
+      leading: ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: Lottie.asset(
+          'assets/lottie/under_processing.json',
+          fit: BoxFit.contain,
+        ),
+      ),
+      trailing: Text('\$${trip.price}'),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    screenWidth = MediaQuery.of(context).size.width;
-    screenHeight = MediaQuery.of(context).size.height;
-    return  SafeArea(
-      child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        padding: EdgeInsets.symmetric(
-            horizontal:screenWidth / 20
-        ),
-        child: Column(
-          children: [
+    return Scaffold(
+      backgroundColor: Colors.grey[300],
+      body: ListView.separated(
+          itemCount: trips.length,
+          separatorBuilder: (context,index){
+            return SizedBox(height: 10,);
+          },
 
-
-            const SizedBox(height: 40,),
-            ListView.builder(
-              itemCount: 10,
-              primary: false,
-              shrinkWrap: true,
-              itemBuilder: (context , index){
-                return item(index);
-              },
-            ),
-            const SizedBox(height: 30,),
-          ],
-        ),
-      ),
+          itemBuilder: (context, index) {
+            return _buildTile(trips[index],context);
+          }),
     );
   }
+}
 
-  Widget item(int index){
-    return Container(
-      height: 55,
-      margin: EdgeInsets.only(
-          bottom: 12
-      ),
-      padding: EdgeInsets.symmetric(
-          horizontal: screenWidth / 20
-      ),
-      width: screenWidth,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            '${index + 1} Mayar Mayar my',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          Icon(Icons.abc),
-        ],
-      ),
-    );
-  }
+class Trip {
+  final String title;
+  final String price;
+  final String nights;
+  final String img;
+
+  Trip({required this.title, required this.price, required this.nights, required this.img});
 }

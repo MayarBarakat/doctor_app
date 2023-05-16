@@ -10,12 +10,12 @@ class AppointmentTrackStateScreen extends StatefulWidget {
 }
 
 class _AppointmentTrackStateScreenState extends State<AppointmentTrackStateScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   final List<Widget> _pages = [
     AcceptedPage(),
     UnderProcessingPage(),
-    RejectedOperations(),
+    RejectedOperationsPage(),
   ];
 
   @override

@@ -1,3 +1,4 @@
+import 'package:doctor_app/layout/doctor_layout.dart';
 import 'package:doctor_app/module/auth_pages/login/my_button.dart';
 import 'package:doctor_app/shared/components/components.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,8 @@ class SurgeryDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Surgery Details'),
+        title: Text('تفاصيل الحجز'),
+        centerTitle: true,
         backgroundColor: Color(0xff30384c),
       ),
       backgroundColor: Colors.grey[300],
@@ -231,7 +233,11 @@ class SurgeryDetailsPage extends StatelessWidget {
                   obscureText: false,
                 ),
                 SizedBox(height: 10,),
-                MyButton(onTap: (){},text: "Send Book",)
+                MyButton(
+                  onTap: (){
+                    navigateAndFinish(context, DoctorLayout());
+                  },
+                  text: "Send Book",)
               ],
             ),
           ),

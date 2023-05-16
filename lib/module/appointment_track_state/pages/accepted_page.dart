@@ -1,5 +1,8 @@
+import 'package:doctor_app/shared/components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
+import '../appointment_state_info.dart';
 
 class AcceptedPage extends StatelessWidget {
   List<Trip> trips = [
@@ -10,12 +13,20 @@ class AcceptedPage extends StatelessWidget {
     Trip(title: 'Space Blast', price: '600', nights: '4', img: 'surgery.jpg'),
   ];
 
-  Widget _buildTile(Trip trip) {
+  Widget _buildTile(Trip trip,context) {
     return ListTile(
+
       onTap: () {
+        navigateTo(context, AppointmentInfo(
+            text: "تم قبول الحجز",
+            image: "check.png",
+            json:false,
+          status: "Accepted",
+          color: Colors.green[800]!,
+        )
+        );
       },
       contentPadding: const EdgeInsets.all(25),
-
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -30,12 +41,9 @@ class AcceptedPage extends StatelessWidget {
       ),
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
-        child: Hero(
-          tag: 'location-img-${trip.img}',
-          child: Image.asset(
-            'assets/images/${trip.img}',
-            height: 50.0,
-          ),
+        child:  Image.asset(
+            'assets/images/accepted.png',
+
         ),
       ),
       trailing: Text('\$${trip.price}'),
@@ -47,13 +55,14 @@ class AcceptedPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: ListView.separated(
-        itemCount: trips.length,
-          separatorBuilder: (context,index){
-          return SizedBox(height: 10,);
+          itemCount: trips.length,
+          separatorBuilder: (context, index) {
+            return SizedBox(
+              height: 10,
+            );
           },
-
           itemBuilder: (context, index) {
-            return _buildTile(trips[index]);
+            return _buildTile(trips[index],context);
           }),
     );
   }
@@ -65,5 +74,9 @@ class Trip {
   final String nights;
   final String img;
 
-  Trip({required this.title, required this.price, required this.nights, required this.img});
+  Trip(
+      {required this.title,
+      required this.price,
+      required this.nights,
+      required this.img});
 }
